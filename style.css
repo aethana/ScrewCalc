@@ -1,0 +1,485 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(125deg, #004C97 50%, #FFFFFF 50%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main-header {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.logo {
+    height: 40px;
+    padding: 0px 10px 0px 10px; /* Top, Right, Bottom, Left */
+}
+
+.calculator-title {
+    text-align: left;
+    font-size: 33px;
+    color: #ffffff;
+    margin: 0px 5px 0px 0; /* Top, Right, Bottom, Left */
+    padding: 7px 10px 5px 17px;
+    font-family: 'Montserrat', sans-serif; /* Set the font to Montserrat */
+    font-weight: bold; /* Make the text bold */
+}
+
+.icons {
+    color: #696969;
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Adjust the space between the icons */
+    margin-right: 5px; /* Adds spacing between this container and the drill bit image */
+
+}
+
+.icons i {
+    font-size: 28px; /* Adjust icon size */
+    cursor: pointer;
+    /* Add more styling as needed (color, etc.) */
+}
+
+
+.canvas-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px 0px 17px; /* Top, Right, Bottom, Left */
+}
+
+#buttJointCanvas {
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+    height: 200px;
+}
+
+.drag-button {
+    width: 100px;
+    height: 100px;
+    background-color: #808080;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 17px;
+    position: absolute;
+    transition: transform 0.2s;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.drag-button:hover {
+    transform: scale(1.1);
+}
+
+/* Styles for the drill bit and jig setting section */
+.drill-bit-section {
+    display: flex;
+    justify-content: start; /* Keeps children aligned to the start horizontally */
+    align-items: flex-start; /* Keeps children aligned to the start vertically */
+    padding: 10px; /* Keeping the original padding */
+    background-color: #004C97; /* Blue background */
+    border: 4px solid #ffffff; /* White border */
+    border-radius: 10px; /* Optional rounded corners */
+    margin: 20px 0; /* Optional vertical spacing */
+    width: 185px; /* Sets the width to 45% of the viewport width */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+    align-self: flex-start; /* Aligns the section itself to the start of its parent container */
+}
+
+.drill-bit-image-container img, .jig-setting-container img {
+    width: 90px; /* Ensures consistency in width */
+    height: auto; /* Maintains aspect ratio */
+}
+
+.collar-image {
+    position: absolute;
+    top: 0; /* Initially set to 0, will be updated by JavaScript */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+    transition: top 0.5s ease-in-out;
+    border-radius: 8px; /* Rounded corners for the collar */
+}
+
+.jig-setting-container {
+    width: 50px; /* Set the width of the jig setting container */
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Center the jig setting image horizontally */
+    align-items: flex-start; /* Align the jig setting image at the top */
+}
+
+.drill-bit-image-container {
+    position: relative;
+    display: inline-block;
+}
+/* Continuing from your existing CSS */
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the children horizontally */
+    margin-left: 1px; /* Adds spacing between this container and the drill bit image */
+}
+
+.jig-setting-container, .screw-size-container {
+    width: 50px; /* Set a fixed width for the containers */
+    margin-bottom: 0px; /* Adds spacing between the jig setting and screw size containers */
+}
+
+.jig-setting-container img, .screw-size-container img {
+    margin-top: 7px; /* Adds spacing between the jig setting and screw size containers */
+    width: 100%; /* Makes the SVGs fill their containers */
+    height: auto; /* Maintains the aspect ratio of the SVGs */
+}
+.drill-bit-section {
+    text-align: center; /* Center-align the content of this section */
+    padding: 1px;
+}
+
+#collarSettingText {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.drill-bit-section {
+    text-align: center; /* Center-align the content of this section */
+    margin-left: 10px; /* Adds spacing between this container and the drill bit image */
+    padding: 0px;
+    margin-top: 1px; /* Add space above the text */
+    margin-bottom: 7px;
+
+}
+
+#collarSettingText {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Ensure other styles for .drill-bit-image-container, .settings-container, etc., remain unchanged */
+.jig-setting-text {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    color: #ffffff; /* Set text color to white */
+    font-size: 14px; /* Set the desired font size */
+    text-align: center; /* Center-align the text */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Transform text to uppercase */
+    margin-top: 1px; /* Add space above the text */
+    margin-bottom: 0px;
+}
+.screw-size-text {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    color: #ffffff; /* Set text color to white */
+    font-size: 14px; /* Set the desired font size */
+    text-align: center; /* Center-align the text */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Transform text to uppercase */
+    margin-top: 0px; /* Add space above the text */
+    margin-bottom: 5px;
+}
+.collar-setting-text {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    color: #ffffff; /* Set text color to white */
+    font-size: 14px; /* Set the desired font size */
+    text-align: center; /* Center-align the text */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Transform text to uppercase */
+    margin-left: 1px;
+    margin-top: 7px; /* Add space above the text */
+    margin-bottom: 5px;
+    width: 90p;
+}
+.display-element {
+    /* Common styles for all display elements */
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    color: #ffffff; /* Set text color to white */
+    font-size: 40px; /* Set the desired font size */
+    text-align: left; /* Center-align the text */
+    font-weight: bold; /* Make the text bold */
+    margin-top: -5px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+.wood-type-switch {
+    position: relative;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif; /* Using Montserrat font */
+}
+
+.wood-type-input {
+    display: none;
+    outline: none; /* Remove default focus outline */
+}
+.switch-section {
+/* Common Styles for Switch Sections */
+.switch-section {
+    padding: 5px;
+    margin-bottom: 20px; /* Space between sections */
+    display: flex;
+    justify-content: flex-start; /* Align the switch to the left */
+}
+
+}
+
+#woodTypeSwitchSection {
+
+.wood-type-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 185px; /* Width of the toggle */
+    height: 40px; /* Height of the toggle */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+    background-color: lightblue; /* Default background for SOFTWOOD */
+    border: 4px solid white; /* White border */
+    border-radius: 28px; /* Rounded edges */
+    transition: background-color 0.2s;
+    overflow: hidden; /* Ensures button does not overlap border */
+    outline: none; /* Remove default focus outline */
+}
+
+.wood-type-selector {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 4px; /* 6px offset for consistent inset */
+    width: 93px; /* Adjusted width of the sliding button for a better fit */
+    height: 40px; /* Height of the sliding button */
+    background-color:#004C97; /* Default color for SOFTWOOD */
+    border-radius: 21px; /* Rounded edges for the button */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+    transform: translateY(-50%); /* Adjust vertical centering */
+    outline: none; /* Remove default focus outline */
+}
+
+.wood-type-text {
+    color: dark; /* Default text color for non-selected */
+    font-weight: bold;
+    z-index: 1;
+    width: 50%; /* Ensure text is aligned within its half */
+    text-align: center; /* Center the text */
+    font-size: 13px; /* Reduced font size for better readability */
+    user-select: none; /* Prevent text selection */
+}
+
+.wood-type-input:checked + .wood-type-label .wood-type-selector {
+    transform: translateX(calc(150px - 58px - 0px)) translateY(-50%); /* Adjusted for the new button width and 6px spacing on both sides */
+}
+
+.wood-type-input:checked + .wood-type-label {
+    background-color: lightcoral; /* Background for HARDWOOD */
+}
+
+.wood-type-input:checked + .wood-type-label .wood-type-text:first-child {
+    color: dark; /* Non-selected text color */
+}
+
+.wood-type-input:checked + .wood-type-label .wood-type-text:last-child {
+    color: white; /* Selected text color for HARDWOOD */
+}
+
+.wood-type-input:not(:checked) + .wood-type-label .wood-type-text:last-child {
+    color: dark; /* Non-selected text color */
+}
+
+.wood-type-input:not(:checked) + .wood-type-label .wood-type-text:first-child {
+    color: white; /* Selected text color for SOFTWOOD */
+}
+
+.wood-type-input:not(:checked) + .wood-type-label .wood-type-selector {
+    background-color: #004C97; /* Button color for SOFTWOOD */
+}
+
+.wood-type-input:checked + .wood-type-label .wood-type-selector {
+    background-color: darkred; /* Button color for HARDWOOD */
+}
+}
+/* Common Styles for Switch Sections */
+.switch-section {
+    padding: 0px;
+    margin-bottom: 0px; /* Space between sections */
+    margin-left: 10px; /* Space between sections */
+    display: flex;
+    justify-content: flex-start; /* Align the switch to the left */
+}
+
+/* Indoor/Outdoor Switch Styles */
+.indoor-outdoor-switch {
+    position: relative;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 7px; /* Space between switches */
+}
+
+.indoor-outdoor-input {
+    display: none;
+    outline: none; /* Remove default focus outline */
+}
+
+.indoor-outdoor-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 185px;
+    height: 40px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+    background-color: #fffd99; /* Light yellow for Indoor */
+    border: 4px solid white;
+    border-radius: 28px;
+    transition: background-color 0.2s;
+    overflow: hidden;
+    outline: none; /* Remove default focus outline */
+}
+
+.indoor-outdoor-selector {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    width: 93px;
+    height: 40px;
+    background-color: #DEA037; /* Yellow for Indoor */
+    border-radius: 23px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-50%);
+    outline: none; /* Remove default focus outline */
+}
+
+.indoor-outdoor-text {
+    color: dark;
+    font-weight: bold;
+    z-index: 1;
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    user-select: none; /* Prevent text selection */
+}
+
+.indoor-outdoor-input:checked + .indoor-outdoor-label .indoor-outdoor-selector {
+    transform: translateX(calc(150px - 58px - 0px)) translateY(-50%);
+    background-color: #003a00; /* Green for Outdoor */
+}
+
+.indoor-outdoor-input:checked + .indoor-outdoor-label {
+    background-color: #99CC99; /* Light green for Outdoor */
+}
+
+.indoor-outdoor-input:checked + .indoor-outdoor-label .indoor-outdoor-text:first-child {
+    color: dark;
+}
+
+.indoor-outdoor-input:checked + .indoor-outdoor-label .indoor-outdoor-text:last-child {
+    color: white;
+}
+
+.indoor-outdoor-input:not(:checked) + .indoor-outdoor-label .indoor-outdoor-text:last-child {
+    color: dark;
+}
+
+.indoor-outdoor-input:not(:checked) + .indoor-outdoor-label .indoor-outdoor-text:first-child {
+    color: white;
+}
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0px; /* Adjust the gap as needed */
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns items to the start of the container */
+}
+
+.recommended-product-section {
+    padding: 5px 10px 0px 10px; /* Top, Right, Bottom, Left */
+    max-width: 180px
+}
+.add-to-cart-btn {
+    display: block; /* Makes the button a block-level element */
+    width: 100%; /* Makes the button extend the full width of its container */
+    padding: 10px 0; /* Adds padding above and below the text */
+    height: 48px;
+    margin-top: 2px; /* Adds space between the button and the image above it */
+    background-color: #DEA037; /* Sets the background color of the button */
+    color: white; /* Sets the text color */
+    border: none; /* Removes the border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
+    font-size: 18px; /* Sets the font size */
+   font-family: 'Montserrat', sans-serif; /* Apply Montserrat font */
+   font-weight: bold;
+    text-align: center; /* Centers the text inside the button */
+}
+
+.add-to-cart-btn:hover {
+    background-color: #a77827; /* Darkens the button background on hover */
+}
+.find-near-me-btn {
+    display: block; /* Makes the button a block-level element */
+    width: 100%; /* Makes the button extend the full width of its container */
+    padding: 0px 0; /* Adds padding above and below the text */
+    height: 48px;
+    margin-top: 7px; /* Adds space between the button and the image above it */
+    background-color: #DEA037; /* Sets the background color of the button */
+    color: white; /* Sets the text color */
+    border: none; /* Removes the border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
+    font-size:18px; /* Sets the font size */
+    text-align: center; /* Centers the text inside the button */
+    font-family: 'Montserrat', sans-serif; /* Apply Montserrat font */
+    font-weight: bold;
+     text-align: center; /* Centers the text inside the button */
+ 
+}
+
+.find-near-me-btn:hover {
+    background-color: #a77827; /* Darkens the button background on hover */
+}
+#thicknessDisplay {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    color: #ffffff; /* Set text color to white */
+    font-size: 40px; /* Set the desired font size */
+    vertical-align: middle;
+    text-align: left; /* Center-align the text */
+    font-weight: bold; /* Make the text bold */
+    text-transform: uppercase; /* Transform text to uppercase */
+    margin-left: 20px;
+    margin-top: 7px; /* Add space above the text */
+    margin-bottom: 0px;
+    width: 90p;
+}
+body, html {
+    min-height: 100vh; /* 100% of the viewport height */
+    margin: 0;
+    padding: 0;
+}
+
+.bottom-div {
+    position: relative; /* Adjust as needed */
+    top: 50vh; /* Adjust based on your needs. This pushes the div lower to ensure scrolling. */
+    width: 100%; /* Full width */
+    text-align: center; /* Center the text inside the div */
+    padding: 20px; /* Add some padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}

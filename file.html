@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screw Selector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+</head>
+<body>
+    <header class="main-header">
+    <img src="images/Logo.svg" alt="Logo" class="logo">
+    <div class="icons">
+        <i class="fas fa-shopping-cart"></i> <!-- Cart Icon -->
+        <i class="fas fa-bars"></i> <!-- Hamburger Menu Icon -->
+    </div>
+</header>
+
+
+    <div class="calculator-title">Pocket Hole Screw Calculator</div>
+
+    <section id="canvasSection" class="canvas-section">
+        <canvas id="buttJointCanvas" width="600" height="200"></canvas>
+        <img id="dragButton" src="images/DragButton.png" class="drag-button" alt="Drag Button">
+    </section>
+
+    <!-- Wrapping the sections into a flex container -->
+    <div class="flex-container">
+        <!-- Column container for drillBitSection, woodTypeSwitchSection, and indoorOutdoorSwitchSection -->
+        <div class="column-container">
+            <div id="thicknessDisplay" class="thickness-info"></div>
+            <section id="drillBitSection" class="drill-bit-section">
+                <div id="drillBitImageContainer" class="drill-bit-image-container">
+                    <div class="collar-setting-text">COLLAR SETTING</div>
+                    <img id="drillBitImage" src="images/Drillbit.svg" alt="Drill Bit">
+                    <img id="collarImage" src="images/Collar.svg" alt="Stop Collar" class="collar-image">
+                </div>
+                <div class="settings-container">
+                    <div id="jigSettingContainer" class="jig-setting-container">
+                        <img id="jigSettingImage" src="" alt="Jig Setting">
+                    </div>
+                    <div class="jig-setting-text">JIG SETTING</div>
+                    
+                    <div id="screwSizeContainer" class="screw-size-container">
+                        <img id="screwSizeImage" src="" alt="Screw Size">
+                    </div>
+                    <div class="screw-size-text">SCREW SIZE</div>
+                </div>
+            </section>
+
+            <section id="woodTypeSwitchSection" class="switch-section">
+                <div class="wood-type-switch">
+                    <input type="checkbox" id="wood-type-input" class="wood-type-input">
+                    <label for="wood-type-input" class="wood-type-label">
+                        <span class="wood-type-text">SOFT<br>WOOD</span>
+                        <span class="wood-type-selector"></span>
+                        <span class="wood-type-text">HARD<br>WOOD</span>
+                    </label>
+                </div>
+            </section>
+
+            <section id="indoorOutdoorSwitchSection" class="switch-section">
+                <div class="indoor-outdoor-switch">
+                    <input type="checkbox" id="indoor-outdoor-input" class="indoor-outdoor-input">
+                    <label for="indoor-outdoor-input" class="indoor-outdoor-label">
+                        <span class="indoor-outdoor-text">IN<br>DOOR</span>
+                        <span class="indoor-outdoor-selector"></span>
+                        <span class="indoor-outdoor-text">OUT<br>DOOR</span>
+                    </label>
+                </div>
+            </section>
+        </div>
+
+        <!-- Recommended Product Section -->
+        <section class="recommended-product-section">
+            <img id="recommendedProductImage" src="" alt="Recommended Product" style="width: 100%; max-width: 200px; height: auto;">
+            <button type="button" class="add-to-cart-btn">Add to Cart</button>
+            <button type="button" class="find-near-me-btn">Find Near Me</button>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <div class="bottom-div">Made by Ethan Andersen</div>
+</body>
+</html>
